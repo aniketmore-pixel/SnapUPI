@@ -1,0 +1,25 @@
+image: gitpod/workspace-full
+
+tasks:
+  - init: |
+      # bring up Postgres + Redis as containers (detached)
+      docker-compose up -d db redis
+      # wait a bit for DBs to come up
+      sleep 3
+  - command: |
+      # open a terminal to run the backend (you can split terminals in Gitpod)
+      echo "Start backend: cd backend && pip install -r requirements.txt && uvicorn main:app --host 0.0.0.0 --port 8000"
+      bash -lc "cd backend && pip install -r requirements.txt"
+      # start the worker in background
+      bash -lc "cd backend && python worker.py &"
+      # start uvicorn (keep in foreground)
+      bash -lc "cd backend && uvicorn main:app --host 0.0.0.0 --port 8000"
+ports:
+  - port: 8000
+    onOpen: open-preview
+  - port: 3000
+    onOpen: open-browser
+vscode:
+  extensions:
+    - ms-python.python
+    - esbenp.prettier-vscode
