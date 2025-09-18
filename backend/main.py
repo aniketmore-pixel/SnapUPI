@@ -6,12 +6,29 @@ from utils import generate_upi, validate_upi
 import uuid, os, redis
 from sqlalchemy.exc import IntegrityError
 from datetime import datetime
+import threading
+import time
 import json
+from fastapi.middleware.cors import CORSMiddleware
+
 
 # Connect to Redis
 REDIS = redis.Redis(host=os.getenv("REDIS_HOST","localhost"), port=int(os.getenv("REDIS_PORT",6379)), decode_responses=True)
 
 app = FastAPI(title="Mini UPI Gateway (sim)")
+
+# CORS setup
+origins = [
+    "http://localhost:3000",  # React frontend
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,       # allow only frontend origin
+    allow_credentials=True,
+    allow_methods=["*"],         # allow all HTTP methods (GET, POST...)
+    allow_headers=["*"],         # allow all headers
+)
 
 @app.on_event("startup")
 def startup():
@@ -74,3 +91,14 @@ def api_status(tx_id: str):
         "attempts": tx.attempt_count,
         "last_error": tx.last_error
     }
+    
+    
+def process_pending_txs():
+    while True:
+        tx_id = REDIS.rpop("pending_txs")
+        if tx_id:
+            # simulate processing
+            REDIS.hset(f"tx:{tx_id}", "status", "SUCCESS")
+        time.sleep(1)
+
+threading.Thread(target=process_pending_txs, daemon=True).start()
