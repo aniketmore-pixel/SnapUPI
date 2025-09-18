@@ -13,7 +13,7 @@ SnapUPI is a lightweight simulation of a UPI gateway that allows generating uniq
 ---
 
 ## Demo
-- Watch this demo video -> 
+- Watch this demo video -> https://drive.google.com/file/d/1WjXdOn4mv0t7-ustW4qSsOzSXZlB4tKC/view?usp=sharing
 
 ---
 
