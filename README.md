@@ -5,6 +5,18 @@ SnapUPI is a lightweight simulation of a UPI gateway that allows generating uniq
 
 ---
 
+## Screenshots
+<img width="1920" height="1080" alt="Screenshot (137)" src="https://github.com/user-attachments/assets/e8e09880-1a15-42c2-aa6a-1476d977683a" />
+<img width="1920" height="1080" alt="Screenshot (138)" src="https://github.com/user-attachments/assets/575c4181-4da6-4c78-b7a8-dbcedcd576bb" />
+<img width="1920" height="1080" alt="Screenshot (139)" src="https://github.com/user-attachments/assets/6593fede-36d2-4837-829d-ee9806c2d4b6" />
+
+---
+
+## Demo
+- Watch this demo video -> 
+
+---
+
 ## Features
 - Generate unique UPI IDs.
 - Initiate a collect request (simulated ₹10 transaction).
