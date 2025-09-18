@@ -1,4 +1,4 @@
-# SnapUPI - Mini UPI Gateway Simulation
+# SnapUPI - UPI Payment Gateway Simulation
 
 ## Project Description
 SnapUPI is a lightweight simulation of a UPI gateway that allows generating unique UPI IDs, sending collect requests, and tracking transaction status in real-time. It demonstrates a full-stack setup with FastAPI, PostgreSQL, Redis, and React.
